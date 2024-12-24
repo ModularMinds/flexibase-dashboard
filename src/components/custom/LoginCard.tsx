@@ -15,8 +15,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 const LoginCard = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const [adminCredentials, setAdminCredentials] = useState({
     username: "",
@@ -32,18 +31,16 @@ const LoginCard = () => {
 
   const onSignInClicked = async () => {
     const { username, password } = adminCredentials;
-    
+
     if (
       username === process.env.NEXT_PUBLIC_FLEXIBASE_ADMIN_USER &&
       password === process.env.NEXT_PUBLIC_FLEXIBASE_ADMIN_PASSWORD
     ) {
-      localStorage.setItem("flexibase-admin-user", username)
-      router.replace("/dashboard")
+      localStorage.setItem("flexibase-admin-user", username);
+      router.replace("/dashboard");
+    } else {
+      alert("failed");
     }
-    else {
-      alert("failed")
-    }
-
   };
 
   return (

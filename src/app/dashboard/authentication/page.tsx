@@ -1,32 +1,33 @@
 "use client";
 
 import { authApi } from "@/api";
+
+import AuthenticatedUsersList from "@/components/custom/AuthenticatedUsersList";
+import ServiceUnavailableBanner from "@/components/custom/ServiceUnavailableBanner";
+
 import { useEffect, useState } from "react";
 
 const Page = () => {
-  const [users, setUsers] = useState<{ id: string; email: string }[]>([]);
+  const [isServiceAvailable, setIsServiceAvailable] = useState(false);
 
   useEffect(() => {
     authApi
-      .get("/admin/get-users")
-      .then((res) => {
-        setUsers(res.data.users);
+      .get("/service-check")
+      .then(() => {
+        setIsServiceAvailable(true);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setIsServiceAvailable(false);
       });
   }, []);
 
   return (
     <div>
-      {users.map(({ id, email }, key) => {
-        return (
-          <div key={key}>
-            <span>{id}</span>
-            <span>{email}</span>
-          </div>
-        );
-      })}
+      {!isServiceAvailable ? (
+        <ServiceUnavailableBanner serviceName="Authentication" />
+      ) : (
+        <AuthenticatedUsersList />
+      )}
     </div>
   );
 };

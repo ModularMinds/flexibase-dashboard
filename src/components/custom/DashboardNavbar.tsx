@@ -18,19 +18,19 @@ import {
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Authentication",
-    href: "/docs/primitives/alert-dialog",
+    href: "/dashboard/authentication",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Database",
-    href: "/docs/primitives/hover-card",
+    href: "/dashboard/database",
     description:
       "For sighted users to preview content available behind a link.",
   },
   {
     title: "Storage",
-    href: "/docs/primitives/progress",
+    href: "/dashboard/storage",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
@@ -40,8 +40,7 @@ const DashboardNavbar = () => {
   return (
     <div className="flex border items-center p-3">
       <NavigationMenu>
-        <NavigationMenuList >
-
+        <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Services</NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -58,7 +57,7 @@ const DashboardNavbar = () => {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          
+
           <NavigationMenuItem>
             <Link href="/docs" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -66,7 +65,6 @@ const DashboardNavbar = () => {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-
         </NavigationMenuList>
       </NavigationMenu>
     </div>
