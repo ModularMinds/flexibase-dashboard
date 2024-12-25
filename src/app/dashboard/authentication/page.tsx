@@ -1,9 +1,11 @@
 "use client";
 
 import { authApi } from "@/api";
-
+import { AddUserButton } from "@/components/custom/AddUserButton";
 import AuthenticatedUsersList from "@/components/custom/AuthenticatedUsersList";
+
 import ServiceUnavailableBanner from "@/components/custom/ServiceUnavailableBanner";
+import FlexibaseAuthProvider from "@/context/FlexibaseAuthProvider";
 
 import { useEffect, useState } from "react";
 
@@ -26,7 +28,13 @@ const Page = () => {
       {!isServiceAvailable ? (
         <ServiceUnavailableBanner serviceName="Authentication" />
       ) : (
-        <AuthenticatedUsersList />
+        <FlexibaseAuthProvider>
+          <div className="flex items-center justify-between px-10 py-4">
+            <span></span>
+            <AddUserButton />
+          </div>
+          <AuthenticatedUsersList />
+        </FlexibaseAuthProvider>
       )}
     </div>
   );
