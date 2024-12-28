@@ -59,7 +59,12 @@ const DashboardNavbar = () => {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link
+              target="_blank"
+              href="https://github.com/ModularMinds/flexibase"
+              legacyBehavior
+              passHref
+            >
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Documentation
               </NavigationMenuLink>
