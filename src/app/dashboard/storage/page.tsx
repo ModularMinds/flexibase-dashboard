@@ -2,7 +2,6 @@
 
 import { storageApi } from "@/api";
 
-import AuthenticatedUsersList from "@/components/custom/AuthenticatedUsersList";
 import ServiceUnavailableBanner from "@/components/custom/ServiceUnavailableBanner";
 
 import { useEffect, useState } from "react";
@@ -44,7 +43,9 @@ const Page = () => {
       {!isServiceAvailable ? (
         <ServiceUnavailableBanner serviceName="Storage" />
       ) : (
-        <AuthenticatedUsersList />
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-xl font-medium">Under construction</p>
+        </div>
       )}
     </div>
   );

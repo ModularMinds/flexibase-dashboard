@@ -14,31 +14,40 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Authentication",
     href: "/dashboard/authentication",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "An authentication as a service, which enables to authentication, onboard and manage users of your application seamlessly",
   },
   {
     title: "Database",
     href: "/dashboard/database",
     description:
-      "For sighted users to preview content available behind a link.",
+      "A Database as a service, which lets you create SQL tables required for your application",
   },
   {
     title: "Storage",
     href: "/dashboard/storage",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "A storage as a service which lets you create buckets and manage all user objects",
   },
 ];
 
 const DashboardNavbar = () => {
+  const router = useRouter();
+
+  const logOut = () => {
+    localStorage.removeItem("flexibase-admin-user");
+    router.replace("/");
+  };
+
   return (
-    <div className="flex border items-center p-3">
+    <div className="flex border items-center justify-between p-3">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -72,6 +81,9 @@ const DashboardNavbar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <Button variant={"outline"} onClick={logOut}>
+        Logout
+      </Button>
     </div>
   );
 };

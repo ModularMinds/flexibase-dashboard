@@ -1,9 +1,11 @@
 "use client";
 
 import { dbApi } from "@/api";
+import { CreateTableButton } from "@/components/custom/CreateTableButton";
 
-import AuthenticatedUsersList from "@/components/custom/AuthenticatedUsersList";
 import ServiceUnavailableBanner from "@/components/custom/ServiceUnavailableBanner";
+import TablesList from "@/components/custom/TablesList";
+import FlexibaseDBProvider from "@/context/FlexibaseDBProvider";
 
 import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
@@ -22,29 +24,35 @@ const Page = () => {
       });
   }, []);
 
-    if (isServiceAvailable === undefined) {
-      return (
-        <div className="flex items-center justify-center h-[500px]">
-          <TailSpin
-            visible={true}
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        </div>
-      );
-    }
+  if (isServiceAvailable === undefined) {
+    return (
+      <div className="flex items-center justify-center h-[500px]">
+        <TailSpin
+          visible={true}
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
 
   return (
     <div>
       {!isServiceAvailable ? (
         <ServiceUnavailableBanner serviceName="Database" />
       ) : (
-        <AuthenticatedUsersList />
+        <FlexibaseDBProvider>
+          <div className="flex items-center justify-between px-10 py-4">
+            <span></span>
+            <CreateTableButton />
+          </div>
+          <TablesList />
+        </FlexibaseDBProvider>
       )}
     </div>
   );

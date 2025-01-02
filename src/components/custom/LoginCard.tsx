@@ -44,9 +44,9 @@ const LoginCard = () => {
   };
 
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[350px] bg-white">
       <CardHeader>
-        <CardTitle>Admin Dashboard</CardTitle>
+        <CardTitle className="text-center pb-5">FlexiBase</CardTitle>
         <CardDescription>
           Manage all your self-hosted services at one place.
         </CardDescription>
